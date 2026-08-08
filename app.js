@@ -244,6 +244,7 @@
 
   function newGame() {
     if (aiBusy) return;
+    if (pendingPromo) hidePromo(); // dismiss a pending promotion picker first
     game = new Game();
     clearSelection();
     postMove();
@@ -280,6 +281,11 @@
       game.makeMove(m);
       postMove();
     });
+  });
+
+  // Clicking the backdrop cancels the pending promotion, same as Escape.
+  promoModal.addEventListener('click', (e) => {
+    if (e.target === promoModal && pendingPromo) hidePromo();
   });
 
   // ---- input: click-to-move + drag-and-drop ------------------------------
