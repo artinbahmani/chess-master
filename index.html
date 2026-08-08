@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chess Master — full-rules chess vs AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="title-row">
+    <span class="logo">♞</span>
+    <h1>Chess Master</h1>
+  </div>
+  <p class="tagline">Full-rules chess against an in-browser AI. No dependencies, no server.</p>
+</header>
+
+<main class="layout">
+  <section class="board-area">
+    <div id="board" aria-label="Chess board"></div>
+    <div id="status-bar" class="status-bar">White to move</div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="panel">
+      <div class="row">
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty">
+          <option value="1">Easy</option>
+          <option value="2">Medium</option>
+          <option value="3">Hard</option>
+          <option value="4">Expert</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="play-as">Play as</label>
+        <select id="play-as">
+          <option value="w">White</option>
+          <option value="b">Black</option>
+        </select>
+      </div>
+      <div class="btn-grid">
+        <button id="btn-new">New Game</button>
+        <button id="btn-undo">Takeback</button>
+        <button id="btn-flip">Flip Board</button>
+        <button id="btn-pgn">Copy PGN</button>
+      </div>
+    </div>
+
+    <div class="panel material-panel">
+      <div class="mat-row" id="mat-you"></div>
+      <div class="mat-row" id="mat-ai"></div>
+    </div>
+
+    <div class="panel moves-panel">
+      <h2>Moves</h2>
+      <div class="moves-scroll">
+        <table id="move-table"><tbody></tbody></table>
+      </div>
+    </div>
+
+    <div class="panel help-panel">
+      <p>Drag a piece, or click it then click a target square. Dots mark legal moves, rings mark captures.</p>
+      <p class="keys"><b>N</b> new game &nbsp;·&nbsp; <b>U</b> takeback &nbsp;·&nbsp; <b>F</b> flip board &nbsp;·&nbsp; <b>Esc</b> cancel</p>
+    </div>
+  </aside>
+</main>
+
+<div id="promo-modal" class="modal hidden">
+  <div class="modal-card">
+    <p>Promote to</p>
+    <div class="promo-choices">
+      <button data-p="q" class="promo-btn"></button>
+      <button data-p="r" class="promo-btn"></button>
+      <button data-p="b" class="promo-btn"></button>
+      <button data-p="n" class="promo-btn"></button>
+    </div>
+  </div>
+</div>
+
+<script src="engine.js"></script>
+<script src="ai.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
